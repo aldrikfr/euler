@@ -1,0 +1,4 @@
+(library
+ (name selfpower)
+ (libraries base zarith)
+)
