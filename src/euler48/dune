@@ -1,4 +1,4 @@
 (executable
  (name euler)
- (libraries base selfpower)
+ (libraries selfpower)
 )

@@ -1,4 +1,4 @@
 (library
  (name selfpower)
- (libraries base zarith)
+ (libraries base range zarith functory)
 )
