@@ -1,0 +1,5 @@
+(executable
+ (name euler48)
+ (public_name euler)
+ (libraries selfpower)
+)
