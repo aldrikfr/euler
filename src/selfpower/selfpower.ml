@@ -5,17 +5,22 @@ let cores_available = 12
 
 let () = set_number_of_cores cores_available
 
+let power_itself x = Z.pow  (Z.of_int x)  x
 
-let sum_and_power acc x = Z.add acc ( Z.pow  (Z.of_int x)  x )
+let map_reduce ~f_map ~f_reduce ~neutral r =
+  r
+  |> Range.split 1000 (cores_available * 2)
+  |> map_fold_ac
+    ~f:(Range.fold (fun acc x -> (f_reduce acc (f_map x))) neutral)
+    ~fold:(f_reduce)
+    neutral
 
-let of_string x =
+let of_int x =
   let open Range in
   x
-  |> Int.of_string
   |> from 1
-  |> split 1000 (cores_available * 2)
-  |> map_fold_ac
-    ~f:(fold sum_and_power Z.zero)
-    ~fold:(Z.add)
-    Z.zero
+  |> map_reduce ~f_reduce:Z.add ~f_map:power_itself ~neutral:Z.zero
   |> Z.to_string
+
+
+let of_string = Fn.compose of_int Int.of_string
