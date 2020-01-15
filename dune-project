@@ -1,5 +1,6 @@
 (lang dune 1.10)
 (name euler)
+(version "0.1")
 (source (github aldrikfr/euler))
 (license ISC)
 (authors "Aldrik KLEBER")
@@ -11,6 +12,7 @@
  (synopsis "Solve puzzle euler 48")
  (description "Solve puzzle 48 using arbitrary size number and parallel computing")
  (depends
+  (ocaml (> 4.03))
   (zarith (> 1.9))
   (range (> 1.8))
   (functory  (>= 0.6))
