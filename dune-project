@@ -8,8 +8,8 @@
 
 (package
  (name euler)
- (synopsis "Solve puzzle euler 48.")
- (description "Solve puzzle 48 using arbitrary size number and parallel computing.")
+ (synopsis "Solve puzzle euler 48")
+ (description "Solve puzzle 48 using arbitrary size number and parallel computing")
  (depends
   (zarith (> 1.9))
   (range (> 1.8))

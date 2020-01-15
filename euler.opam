@@ -12,9 +12,9 @@ bug-reports: "https://github.com/aldrikfr/euler/issues"
 homepage: "https://github.com/aldrikfr/euler"
 license: "ISC"
 dev-repo: "git+https://github.com/aldrikfr/euler.git"
-synopsis: "Solve puzzle euler 48."
+synopsis: "Solve puzzle euler 48"
 description:
-  "Solve puzzle 48 using arbitrary size number and parallel computing."
+  "Solve puzzle 48 using arbitrary size number and parallel computing"
 depends: [
   "zarith" {> "1.9"}
   "range" {> "1.8"}
