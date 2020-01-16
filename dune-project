@@ -13,8 +13,8 @@
  (description "Solve puzzle 48 using arbitrary size number and parallel computing")
  (depends
   (ocaml (>= 4.02))
-  (zarith (>= 1))
-  (range (>= 1.5))
+  (zarith (>= 1.9))
+  (range (>= 0.8))
   (functory  (>= 0.6))
   (base (>= 0.11 ))
   (dune (>= 1.11))
