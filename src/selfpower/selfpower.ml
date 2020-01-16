@@ -8,7 +8,7 @@ let () = set_number_of_cores cores_available
 let power_itself x = Z.pow (Z.of_int x) x
 
 let map_reduce_on_range ~f_map ~f_reduce ~neutral r =
-  Range.split 1000 (cores_available * 2) r
+  Range.split 200 (cores_available * 2) r
   |> map_fold_ac
     ~f:(Range.fold (fun acc x -> (f_reduce acc (f_map x))) neutral)
     ~fold:(f_reduce)
