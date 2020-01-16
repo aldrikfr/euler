@@ -16,7 +16,7 @@ let map_reduce_on_range ~f_map ~f_reduce ~neutral r =
 
 let of_int x =
   Range.from 1 x
-  |> map_reduce ~f_reduce:Z.add ~f_map:power_itself ~neutral:Z.zero
+  |> map_reduce_on_range ~f_reduce:Z.add ~f_map:power_itself ~neutral:Z.zero
   |> Z.to_string
 
 let of_string = Fn.compose of_int Int.of_string
