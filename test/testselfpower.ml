@@ -1,9 +1,9 @@
 
 (* SPDX-License-Identifier:  GPL-3.0-or-later *)
 open OUnit2
-
+open Base
 let assert_selfpower expected param =
-  assert_equal expected (Selfpower.of_string param)
+  assert_equal ~cmp:(String.equal) ~printer:(Fn.id) expected (Selfpower.of_string param)
 
 let selfpower_tests =
   [
