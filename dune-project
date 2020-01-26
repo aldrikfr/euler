@@ -17,6 +17,7 @@
   (range (>= 0.8))
   (functory  (>= 0.6))
   (base (>= 0.11 ))
+  (stdio (>= 0.11))
   (dune (>= 1.11))
   (ounit :with-test)
   ))
