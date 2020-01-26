@@ -1,21 +1,27 @@
 open Base
 open Stdio
 
-let check_param_available () =
-  if Array.length (Sys.get_argv ())= 2
-  then Result.return 1
-  else Result.fail "One parameter only"
+let get_index () =
+  let open Result in
+  match Array.length (Sys.get_argv ()) with
+  | 1 -> fail "A parameter is needed"
+  | 2 -> return 1
+  | _ -> fail "Only one parameter is needed"
 
-let check_is_int s =
-  try Result.return (Int.of_string s) with
-  | _ -> Result.fail "Parameter is not a numvber"
+let int_of_string s =
+  try (Result.return (Int.of_string s)) with
+  | Failure _ -> Result.fail "Parameter is not a number"
 
+let get_param = Fn.compose Result.return (fun n -> Sys.get_argv () |> fun x -> x.(n))
+
+let selfpower = Fn.compose Result.return Selfpower.of_int
 
 let () =
   let open Result in
-  check_param_available ()
-  >>= (fun n -> return (Sys.get_argv () |> fun x -> x.(n)) )
-  >>= (Fn.compose return Selfpower.of_string)
+  get_index ()
+  >>= get_param
+  >>= int_of_string
+  >>= selfpower
   |> function
   | Ok s -> Out_channel.(printf "%s\n" s)
-  | Error m -> Out_channel.(eprintf "Erreur:\n%s\n" m )
+  | Error m -> Out_channel.(eprintf "Error : %s\n" m )
