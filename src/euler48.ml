@@ -12,16 +12,14 @@ let int_of_string s =
   try (Result.return (Int.of_string s)) with
   | Failure _ -> Result.fail "Parameter is not a number"
 
-let get_param = Fn.compose Result.return (fun n -> Sys.get_argv () |> fun x -> x.(n))
-
-let selfpower = Fn.compose Result.return Selfpower.of_int
+let get_param = (fun n -> Sys.get_argv () |> fun x -> x.(n))
 
 let () =
   let open Result in
   get_index ()
-  >>= get_param
+  >>| get_param
   >>= int_of_string
-  >>= selfpower
+  >>| Selfpower.of_int
   |> function
-  | Ok s -> Out_channel.(printf "%s\n" s)
-  | Error m -> Out_channel.(eprintf "Error : %s\n" m )
+    | Ok s -> Out_channel.(printf "%s\n" s)
+    | Error m -> Out_channel.(eprintf "Error : %s\n" m )
