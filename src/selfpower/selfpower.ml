@@ -9,7 +9,7 @@ let ( + ) = Z.add
 
 let zero = Z.zero
 
-let positive_only x = Result.ok_if_true (x >= 0) ~error: "Positive number only"
+let positive_only x = Result.ok_if_true (x >= 0) ~error:"Positive number only"
 
 let is_zero x = x = 0
 
@@ -20,7 +20,7 @@ let self_power_on_range x =
 
 let of_int x =
   let open Result in
-  positive_only x
-  >>= (fun _ -> if is_zero x then return "1" else self_power_on_range x)
+  positive_only x >>= fun _ ->
+  if is_zero x then return "1" else self_power_on_range x
 
 let of_string = Fn.compose of_int Int.of_string
