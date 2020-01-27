@@ -20,6 +20,6 @@ let () =
   >>| get_param
   >>= int_of_string
   >>| Selfpower.of_int
-  |> function
-    | Ok s -> Out_channel.(printf "%s\n" s)
-    | Error m -> Out_channel.(eprintf "Error : %s\n" m )
+  |> Out_channel.(function
+    | Ok s -> printf "%s\n" s
+    | Error m -> eprintf "Error : %s\n" m )
