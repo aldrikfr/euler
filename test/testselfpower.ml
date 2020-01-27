@@ -14,11 +14,8 @@ let selfpower_tests =
   [
     ("with param 1" >:: fun _ctxt -> assert_selfpower Result.(return "1") "1");
     ("with param 2" >:: fun _ctxt -> assert_selfpower Result.(return "5") "2");
-
-
     ( "with big number" >:: fun _ctxt ->
       assert_selfpower Result.(return "106876212200059554303215024") "20" );
-
   ]
 
 let regression_tests =
@@ -29,7 +26,6 @@ let regression_tests =
     ( "equivalence of_int and of_string" >:: fun _ctxt ->
       assert_equal (Selfpower.of_int 50) (Selfpower.of_string "50") )
   ]
-
 
 let suite = test_list ([
     ("unit testing" >::: selfpower_tests);
