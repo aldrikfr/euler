@@ -2,4 +2,4 @@
  (names testselfpower)
  (libraries oUnit selfpower)
  (action
-  (run %{test})))
+  (run %{test} -runner sequential)))
