@@ -19,11 +19,19 @@ let get_param x =
 
 let get_selfpower x = return @@ Selfpower.of_int @@ x
 
+let handle_result =
+  let open Out_channel in
+    function
+      | Ok s -> printf "%s\n" s
+      | Error m ->
+        begin
+          eprintf "Error : %s\n" m ;
+          Caml.exit 1
+        end
+
 let () =
   get_index ()
   >>= get_param
   >>= int_of_string
   >>= get_selfpower
-  |> Out_channel.(function
-    | Ok s -> printf "%s\n" s
-    | Error m -> eprintf "Error : %s\n" m ; Caml.exit 1)
+  |> handle_result
