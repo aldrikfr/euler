@@ -1,4 +1,3 @@
 (library
  (name selfpower)
- (libraries base range zarith unix functory)
-)
+ (libraries base range zarith unix functory))

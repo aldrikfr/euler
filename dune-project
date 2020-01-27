@@ -6,6 +6,7 @@
 (authors "Aldrik KLEBER")
 (maintainers "contact@aldrik.net")
 (generate_opam_files true)
+(using fmt 1.2)
 
 (package
  (name euler)
