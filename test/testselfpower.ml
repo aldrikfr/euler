@@ -15,9 +15,8 @@ let selfpower_tests =
     ("with param 1" >:: fun _ctxt -> assert_selfpower Result.(return "1") "1");
     ("with param 2" >:: fun _ctxt -> assert_selfpower Result.(return "5") "2");
     ( "with param -2" >:: fun _ctxt ->
-      assert_selfpower Result.(fail "Non null positive number only") "-2" );
-    ( "with param -2" >:: fun _ctxt ->
-      assert_selfpower Result.(fail "Non null positive number only") "0" );
+      assert_selfpower Result.(fail "Positive number only") "-2" );
+    ("with param -2" >:: fun _ctxt -> assert_selfpower Result.(return "1") "0");
     ( "with big number" >:: fun _ctxt ->
       assert_selfpower Result.(return "106876212200059554303215024") "20" );
     ( "equivalence of_int and of_string" >:: fun _ctxt ->
