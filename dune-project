@@ -1,6 +1,6 @@
 (lang dune 1.10)
 (name euler)
-(version "0.1")
+(version "0.2")
 (source (github aldrikfr/euler))
 (license ISC)
 (authors "Aldrik KLEBER")

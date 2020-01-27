@@ -11,7 +11,7 @@ authors: ["Aldrik KLEBER"]
 bug-reports: "https://github.com/aldrikfr/euler/issues"
 homepage: "https://github.com/aldrikfr/euler"
 license: "ISC"
-version: "0.1"
+version: "0.2"
 dev-repo: "git+https://github.com/aldrikfr/euler.git"
 synopsis: "Solve puzzle euler 48"
 description:
