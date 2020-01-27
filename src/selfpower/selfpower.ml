@@ -9,12 +9,18 @@ let ( + ) = Z.add
 
 let zero = Z.zero
 
+let positive_only x = Result.ok_if_true (x >= 0) ~error: "Positive number only"
+
+let is_zero x = x = 0
+
+let self_power_on_range x =
+  Range.from 1 x
+  |> map_reduce_on_range ~f_reduce:( + ) ~f_map:self_power ~neutral:zero
+  |> Z.to_string |> Result.return
+
 let of_int x =
-  if x < 0 then Result.fail "Positive number only"
-  else if x = 0 then Result.return "1"
-  else
-    Range.from 1 x
-    |> map_reduce_on_range ~f_reduce:( + ) ~f_map:self_power ~neutral:zero
-    |> Z.to_string |> Result.return
+  let open Result in
+  positive_only x
+  >>= (fun _ -> if is_zero x then return "1" else self_power_on_range x)
 
 let of_string = Fn.compose of_int Int.of_string
