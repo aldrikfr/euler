@@ -12,7 +12,7 @@ let int_of_string s =
   try (Result.return (Int.of_string s)) with
   | Failure _ -> Result.fail "Parameter is not a number"
 
-let get_param = (fun n -> Sys.get_argv () |> fun x -> x.(n))
+let get_param = Array.get (Sys.get_argv ())
 
 let () =
   let open Result in
