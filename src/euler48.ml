@@ -17,8 +17,6 @@ let get_param x =
   | Invalid_argument _ ->
     fail ("Internal bug inside get_param, index : " ^ (Int.to_string x))
 
-let get_selfpower x = return @@ Selfpower.of_int @@ x
-
 let handle_result =
   let open Out_channel in
     function
@@ -33,5 +31,5 @@ let () =
   get_index ()
   >>= get_param
   >>= int_of_string
-  >>= get_selfpower
+  >>= Selfpower.of_int
   |> handle_result
