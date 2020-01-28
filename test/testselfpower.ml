@@ -24,12 +24,14 @@ let regression_tests =
       assert_selfpower Result.(fail "Positive number only") "-2" );
     ("with param 0" >:: fun _ctxt -> assert_selfpower Result.(return "1") "0");
     ( "equivalence of_int and of_string" >:: fun _ctxt ->
-      assert_equal (Selfpower.of_int 50) (Selfpower.of_string "50") )
+      assert_equal (Selfpower.of_int 50) (Selfpower.of_string "50") );
   ]
 
-let suite = test_list ([
-    ("unit testing" >::: selfpower_tests);
-    ("regression testing" >::: regression_tests)
-  ])
-let () =
-  run_test_tt_main (suite)
+let suite =
+  test_list
+    [
+      "unit testing" >::: selfpower_tests;
+      "regression testing" >::: regression_tests;
+    ]
+
+let () = run_test_tt_main suite
