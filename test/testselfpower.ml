@@ -33,13 +33,7 @@ let regression_tests =
     ( "with param -2" >:: fun ctxt ->
       assert_selfpower ctxt Result.(fail "Positive number only") "-2" );
     ( "equivalence of_int and of_string" >:: fun ctxt ->
-          assert_equal
-            ~ctxt
-            ~cmp:(Result.equal String.equal String.equal)
-            ~printer:result_printer
-            (Selfpower.of_int 50)
-            (Selfpower.of_string "50")
-    );
+          assert_selfpower ctxt (Selfpower.of_int 50) "50" );
   ]
 
 let suite =
