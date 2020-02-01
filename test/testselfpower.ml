@@ -2,29 +2,44 @@
 open OUnit2
 open Base
 
+type t = {name : String.t ; expected : String.t ; parameter : String.t}
+
 let result_printer = Result.(function Ok s -> s | Error m -> m)
 
-let assert_selfpower expected param =
+let assert_selfpower ctxt expected param =
   assert_equal
+    ~ctxt
     ~cmp:(Result.equal String.equal String.equal)
     ~printer:result_printer expected
     (Selfpower.of_string param)
 
+let test_self_power {name;expected;parameter} =
+  name >:: fun ctxt -> assert_selfpower ctxt Result.(return expected) parameter
+
 let selfpower_tests =
   [
-    ("with param 1" >:: fun _ctxt -> assert_selfpower Result.(return "1") "1");
-    ("with param 2" >:: fun _ctxt -> assert_selfpower Result.(return "5") "2");
-    ( "with big number" >:: fun _ctxt ->
-      assert_selfpower Result.(return "106876212200059554303215024") "20" );
-  ]
+    {name="with param 0" ; expected="1" ; parameter="0"};
+    {name="with param 1" ; expected="1" ; parameter="1"};
+    {name="with param 2" ; expected="5" ; parameter="2"};
+    {
+      name="with big number" ;
+      expected="106876212200059554303215024" ;
+      parameter="20"
+    };
+  ] |> List.map ~f:test_self_power
 
 let regression_tests =
   [
-    ( "with param -2" >:: fun _ctxt ->
-      assert_selfpower Result.(fail "Positive number only") "-2" );
-    ("with param 0" >:: fun _ctxt -> assert_selfpower Result.(return "1") "0");
-    ( "equivalence of_int and of_string" >:: fun _ctxt ->
-      assert_equal (Selfpower.of_int 50) (Selfpower.of_string "50") );
+    ( "with param -2" >:: fun ctxt ->
+      assert_selfpower ctxt Result.(fail "Positive number only") "-2" );
+    ( "equivalence of_int and of_string" >:: fun ctxt ->
+          assert_equal
+            ~ctxt
+            ~cmp:(Result.equal String.equal String.equal)
+            ~printer:result_printer
+            (Selfpower.of_int 50)
+            (Selfpower.of_string "50")
+    );
   ]
 
 let suite =
