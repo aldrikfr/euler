@@ -18,9 +18,11 @@ let self_power_on_range x =
   |> map_reduce_on_range ~f_reduce:( + ) ~f_map:self_power ~neutral:zero
   |> Z.to_string |> Result.return
 
+(* public part of the code *)
+
 let of_int x =
-  let open Result in
-  positive_only x >>= fun _ ->
-  if is_zero x then return "1" else self_power_on_range x
+  Result.(
+    positive_only x >>= fun _ ->
+    if is_zero x then return "1" else self_power_on_range x)
 
 let of_string = Fn.compose of_int Int.of_string
