@@ -16,4 +16,4 @@ let get x =
   with Invalid_argument _ ->
     fail ("Internal bug inside get_param, index : " ^ Int.to_string x)
 
-let get_user_param () = get_idx_if_available () >>= get >>= int_of_string
+let get_number () = get_idx_if_available () >>= get >>= int_of_string
