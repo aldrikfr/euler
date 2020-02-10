@@ -1,1 +1,1 @@
-val get_user_param : Unit.t -> (Int.t, String.t) Result.t
+val get_number : Unit.t -> (Int.t, String.t) Result.t
