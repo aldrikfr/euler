@@ -20,6 +20,6 @@ let self_power_on_range =
           |> Z.to_string ))
 
 (* public part of the code *)
-let of_int x = Positive_number.from_int x >>= self_power_on_range
+let of_int x = x |> Positive_number.from_int >>= self_power_on_range
 
 let of_string = Fn.compose of_int Int.of_string
