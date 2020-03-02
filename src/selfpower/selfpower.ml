@@ -14,10 +14,9 @@ let self_power_on_range =
   Positive_number.map ~f:(function
     | 0 | 1 -> return "1"
     | _ as x ->
-        return
-          ( Range.from 1 x
-          |> map_reduce_on_range ~f_reduce:( + ) ~f_map:self_power ~neutral:zero
-          |> Z.to_string ))
+        Range.from 1 x
+        |> map_reduce_on_range ~f_reduce:( + ) ~f_map:self_power ~neutral:zero
+        |> Z.to_string |> return)
 
 (* public part of the code *)
 let of_int x = x |> Positive_number.from_int >>= self_power_on_range
