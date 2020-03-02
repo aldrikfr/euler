@@ -20,6 +20,6 @@ let self_power_on_range = function
 
 (* public part of the code *)
 let of_int x =
-  if x < 0 then Error "Positive number only" else self_power_on_range x
+  Positive_number.from_int x >>= Positive_number.map ~f:self_power_on_range
 
 let of_string = Fn.compose of_int Int.of_string
