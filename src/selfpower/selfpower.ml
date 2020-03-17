@@ -10,16 +10,19 @@ let ( + ) = Z.add
 
 let zero = Z.zero
 
-let sum_self_power = function
+let sum_self_power ~f:map_reduce_f = function
   | 0 | 1 -> return "1"
   | _ as x ->
       Range.from 1 x
-      |> map_reduce_on_range ~f_reduce:( + ) ~f_map:self_power ~neutral:zero
+      |> map_reduce_f ~f_map:self_power ~f_reduce:( + ) ~neutral:zero
       |> Z.to_string |> return
 
-let sum_self_power_of_natural = Positive_number.map ~f:sum_self_power
+let sum_self_power_of_natural ~f:map_reduce_f =
+  Positive_number.map ~f:(sum_self_power ~f:map_reduce_f)
 
 (* public part of the code *)
-let of_int x = x |> Positive_number.from_int >>= sum_self_power_of_natural
+let of_int x =
+  x |> Positive_number.from_int
+  >>= sum_self_power_of_natural ~f:map_reduce_on_range
 
-let of_string = Fn.compose of_int Int.of_string
+let of_string x = x |> Int.of_string |> of_int

@@ -1,0 +1,3 @@
+(library
+ (name distributed_range)
+ (libraries unix functory range))
