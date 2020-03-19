@@ -2,7 +2,7 @@ open Functory.Cores
 
 let cores_available = 12
 
-let threshold = 200
+let threshold = 1_000
 
 let batch_job_number = cores_available * 2
 
