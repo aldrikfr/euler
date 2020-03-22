@@ -1,0 +1,1 @@
+let map_reduce_on_range = Multicore_range.map_reduce_on_range

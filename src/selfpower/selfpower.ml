@@ -1,5 +1,5 @@
 open Base
-open Distributed_range
+open Range_processing
 open Result
 
 type t = Z.t
