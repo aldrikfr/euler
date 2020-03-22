@@ -10,7 +10,7 @@ let get_idx_if_available () =
   | _ -> fail "Only one parameter is needed"
 
 let int_of_string s =
-  try s |> Int.of_string |> return
+  try return @@ Int.of_string @@ s
   with Failure _ -> fail "Parameter is not a number"
 
 let get x =
