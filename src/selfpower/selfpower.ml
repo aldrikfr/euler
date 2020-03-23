@@ -13,7 +13,8 @@ let sum_self_power ~f:map_reduce_f = function
   | 0 | 1 -> return "1"
   | _ as x ->
       Range.from 1 x
-      |> Range_processing.map_reduce_f ~f_map:self_power ~f_reduce:( + ) ~neutral:zero
+      |> Range_processing.map_reduce_f ~f_map:self_power ~f_reduce:( + )
+           ~neutral:zero
       |> Z.to_string |> return
 
 let sum_self_power_of_natural ~f:map_reduce_f =
