@@ -14,7 +14,7 @@ let int_of_string s =
   with Failure _ -> fail "Parameter is not a number"
 
 let get x =
-  try return (Array.get argv x)
+  try return argv.(x)
   with Invalid_argument _ ->
     fail ("Internal bug inside get_param, index : " ^ Int.to_string x)
 
