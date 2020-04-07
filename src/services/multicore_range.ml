@@ -1,6 +1,10 @@
 open Functory.Cores
+open Base
 
-let cores_available = 6
+let cores_available = 
+  match (Sys.getenv "CORES_AVAILABLE" ) with
+    | None -> 6
+    | Some s -> Int.of_string s
 
 let threshold = 1_000
 
