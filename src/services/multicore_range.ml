@@ -1,6 +1,6 @@
 open Functory.Cores
 
-let cores_available = 12
+let cores_available = 6
 
 let threshold = 1_000
 
