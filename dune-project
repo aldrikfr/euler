@@ -1,4 +1,4 @@
-(lang dune 1.10)
+(lang dune 1.11)
 (name euler)
 (version "0.2")
 (source (github aldrikfr/euler))
@@ -15,7 +15,7 @@
  (depends
   (ocaml (>= 4.02))
   (zarith (>= 1.9))
-  (range (< 0.8.2))
+  (range (>= 0.8.3))
   (functory  (>= 0.6))
   (base (>= 0.11 ))
   (stdio (>= 0.11))
