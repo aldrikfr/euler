@@ -24,4 +24,4 @@ let of_int x =
   x |> Positive_number.from_int
   >>= sum_self_power_of_natural ~f:Range_processing.map_reduce_on_range
 
-let of_string x = x |> Int.of_string |> of_int
+let of_string s = s |> Int.of_string |> of_int
