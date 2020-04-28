@@ -1,5 +1,6 @@
 open Base
 open Result
+open Stdio
 
 let argv = Sys.get_argv ()
 
@@ -11,11 +12,16 @@ let get_idx_if_available () =
 
 let int_of_string s =
   try return @@ Int.of_string @@ s
-  with Failure _ -> fail "Parameter is not a number"
+  with Failure _ -> fail ("Parameter is not a number : " ^ s)
 
 let get x =
-  try return argv.(x)
-  with Invalid_argument _ ->
-    fail ("Internal bug inside get_param, index : " ^ Int.to_string x)
+  ( try return argv.(x)
+    with Invalid_argument _ ->
+      fail ("Internal bug inside get_param, index : " ^ Int.to_string x) )
+  >>= fun s ->
+  if String.equal s "--" then
+    In_channel.(input_line stdin)
+    |> Option.value_map ~f:return ~default:(fail "problem reading stdin")
+  else return s
 
 let get_number () = get_idx_if_available () >>= get >>= int_of_string
