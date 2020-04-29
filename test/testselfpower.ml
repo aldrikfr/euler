@@ -36,6 +36,10 @@ let regression_tests =
       parameter = "400";
     }
     |> test_self_power;
+    ( "with param too big" >:: fun ctxt ->
+      assert_selfpower ctxt
+        Result.(fail "This size of number not supported")
+        "1_000_000_000" );
   ]
 
 let suite =
