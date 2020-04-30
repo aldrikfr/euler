@@ -13,7 +13,7 @@
  (synopsis "Solve puzzle euler 48")
  (description "Solve puzzle 48 using arbitrary size number and parallel computing")
  (depends
-  (ocaml (>= 4.02))
+  (ocaml (>= 4.08))
   (zarith (>= 1.9))
   (range (>= 0.8.3))
   (functory  (>= 0.6))
