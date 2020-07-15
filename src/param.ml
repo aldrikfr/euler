@@ -23,8 +23,7 @@ let get x =
       fail ("Internal bug inside get_param, index : " ^ Int.to_string x)
   in
   if String.equal argument "--" then
-    In_channel.(input_line stdin)
-    |> of_option ~error:"problem reading stdin"
+    In_channel.(input_line stdin) |> of_option ~error:"problem reading stdin"
   else return argument
 
 let get_number () = get_idx_if_available () >>= get >>= int_of_string
