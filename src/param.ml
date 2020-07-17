@@ -20,9 +20,9 @@ let get x =
   let* argument =
     try return argv.(x)
     with Invalid_argument _ ->
-      fail ("Internal bug inside get_param, index : " ^ Int.to_string x)
+      fail ("Internal bug inside Param.get, index : " ^ Int.to_string x)
   in
-  if String.equal argument "--" then
+  if String.(argument = "--") then
     In_channel.(input_line stdin) |> of_option ~error:"problem reading stdin"
   else return argument
 
