@@ -38,7 +38,7 @@ let regression_tests =
     |> test_self_power;
     ( "with param too big" >:: fun ctxt ->
       assert_selfpower ctxt
-        Result.(fail "This size of number not supported")
+        Result.(fail "This size of number is not supported")
         "1_000_000_000" );
   ]
 
