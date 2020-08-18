@@ -2,8 +2,8 @@ open Base
 open Stdio
 module R = Result
 
-let string_to_stdout =
-  Out_channel.printf "%s\n";
+let string_to_stdout m =
+  Out_channel.printf "%s\n" m;
   Caml.exit 0
 
 let string_to_stderr m =
