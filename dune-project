@@ -1,4 +1,4 @@
-(lang dune 1.11)
+(lang dune 2.0)
 (name euler)
 (version "0.2")
 (source (github aldrikfr/euler))
@@ -6,8 +6,6 @@
 (authors "Aldrik KLEBER")
 (maintainers "contact@aldrik.net")
 (generate_opam_files true)
-(using fmt 1.2)
-
 (package
  (name euler)
  (synopsis "Solve puzzle euler 48")
@@ -19,6 +17,6 @@
   (functory  (>= 0.6))
   (base (>= 0.11 ))
   (stdio (>= 0.11))
-  (dune (>= 1.11))
+  (dune (>= 2.6))
   (ounit :with-test)
   ))
