@@ -8,7 +8,7 @@ let cores_available = Setting.get_cores_to_use ()
 
 let threshold = gtz 1_000
 
-let batch_job_number = cores_available * 2 |> gtz
+let batch_job_number = cores_available * 3 |> gtz
 
 let () = set_number_of_cores cores_available
 
