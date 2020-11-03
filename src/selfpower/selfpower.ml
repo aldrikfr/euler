@@ -3,7 +3,7 @@ open Result
 
 type t = Z.t
 
-let self_power x = Z.pow (Z.of_int x) x
+let self_power x = Z.(~$x ** x)
 
 let ( + ) = Z.add
 
