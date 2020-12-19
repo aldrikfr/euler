@@ -1,3 +1,4 @@
+(* SPDX-License-Identifier:  GPL-3.0-or-later *)
 open Functory.Cores
 open Base
 module Mono = Monocore_range

@@ -1,3 +1,4 @@
+(* SPDX-License-Identifier:  GPL-3.0-or-later *)
 open Base
 
 let map_reduce_on_range =
