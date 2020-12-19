@@ -12,9 +12,7 @@ let valid_core_value n =
   some_if Range.(from 1 max_parallel_cpu_supported |> contain n) n
 
 let is_inside_int_length s =
-  if String.length s <= Int.(max_value |> to_string |> String.length) then
-    Some s
-  else None
+  some_if (String.length s <= Int.(max_value |> to_string |> String.length)) s
 
 let get_cores_to_use () =
   Sys.getenv "CORES_AVAILABLE"
