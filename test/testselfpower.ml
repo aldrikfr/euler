@@ -22,13 +22,16 @@ let selfpower_tests =
     { name = "with param 2"; expected = "5"; parameter = "2" };
   ]
   |> List.map ~f:test_self_power
+  |> List.append
+       [
+         ( "equivalence of_int and of_string" >:: fun ctxt ->
+           assert_selfpower ctxt (Selfpower.of_int 10) "10" );
+       ]
 
 let regression_tests =
   [
     ( "with param -2" >:: fun ctxt ->
       assert_selfpower ctxt Result.(fail "Positive number only") "-2" );
-    ( "equivalence of_int and of_string" >:: fun ctxt ->
-      assert_selfpower ctxt (Selfpower.of_int 10) "10" );
     {
       name = "with big number";
       expected =
