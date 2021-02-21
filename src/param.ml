@@ -7,7 +7,7 @@ let ( let* ) r f = bind r ~f
 
 let argv = Sys.get_argv ()
 
-let get_idx_if_available () =
+let accept_unique_parameter_only () =
   match Array.length argv with
   | 2 -> return 1
   | 1 -> fail "A parameter is needed"
@@ -17,7 +17,7 @@ let int_of_string s =
   try return @@ Int.of_string @@ s
   with Failure _ -> fail "Input can't be converted to a number"
 
-let get x =
+let string_from_user x =
   let* argument =
     try return argv.(x)
     with Invalid_argument _ ->
@@ -27,4 +27,4 @@ let get x =
     In_channel.(input_line stdin) |> of_option ~error:"problem reading stdin"
   else return argument
 
-let get_number () = get_idx_if_available () >>= get >>= int_of_string
+let get_number () = accept_unique_parameter_only () >>= string_from_user >>= int_of_string
