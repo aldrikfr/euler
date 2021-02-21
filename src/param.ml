@@ -7,9 +7,9 @@ let ( let* ) r f = bind r ~f
 
 let argv = Sys.get_argv ()
 
-let accept_unique_parameter_only () =
+let apply_on_unique_parameter ~f () =
   match Array.length argv with
-  | 2 -> return 1
+  | 2 -> f 1
   | 1 -> fail "A parameter is needed"
   | _ -> fail "Only one parameter is needed"
 
@@ -28,4 +28,4 @@ let string_from_user x =
   else return argument
 
 let get_number () =
-  accept_unique_parameter_only () >>= string_from_user >>= int_of_string
+  apply_on_unique_parameter ~f:string_from_user () >>= int_of_string
