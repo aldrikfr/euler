@@ -6,7 +6,8 @@ let max_parallel_cpu_supported = 256
 
 let cores_available_default_value = 6
 
-let max_int_string_length = Int.to_string max_parallel_cpu_supported |> String.length
+let max_int_string_length =
+  Int.to_string max_parallel_cpu_supported |> String.length
 
 let int_from_string s () = Int.of_string s
 

@@ -27,4 +27,5 @@ let string_from_user x =
     In_channel.(input_line stdin) |> of_option ~error:"problem reading stdin"
   else return argument
 
-let get_number () = accept_unique_parameter_only () >>= string_from_user >>= int_of_string
+let get_number () =
+  accept_unique_parameter_only () >>= string_from_user >>= int_of_string
