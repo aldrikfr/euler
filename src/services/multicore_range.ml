@@ -3,7 +3,7 @@ open Functory.Cores
 open Base
 module Mono = Monocore_range
 
-let (~$) = Range.Number.gtz_from_int_exn
+let ( ~$ ) = Range.Number.gtz_from_int_exn
 
 let cores_available = Setting.get_cores_to_use ()
 
