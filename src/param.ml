@@ -23,7 +23,7 @@ let int_of_string s =
       fail "Input can't be converted to a number"
 
 
-let string_from_user x =
+let param_string_at x =
   let* argument =
     try return argv.(x) with
     | Invalid_argument _ ->
@@ -35,4 +35,4 @@ let string_from_user x =
 
 
 let get_number () =
-  apply_on_unique_parameter ~f:string_from_user () >>= int_of_string
+  apply_on_unique_parameter ~f:param_string_at () >>= int_of_string
